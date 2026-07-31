@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rustandi Family</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts: Playfair Display (display) + Cormorant Garamond (tagline/serif accent) + Jost (body, clean modern) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            DEFAULT: '#0B1B33',
+            deep: '#081527',
+            ink:  '#122544',
+            light:'#1B3358',
+          },
+          gold: {
+            soft: '#CBA966',
+            amber:'#D8AE72',
+            bright:'#E4C48C',
+          },
+          cream: {
+            DEFAULT: '#F6F0E4',
+            deep: '#EDE3CF',
+            line: '#DDCFAF',
+          },
+        },
+        fontFamily: {
+          display: ['"Playfair Display"', 'serif'],
+          serifitalic: ['"Cormorant Garamond"', 'serif'],
+          body: ['"Jost"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; }
+
+  /* Signature element: thin gold rule with a small rotated diamond mark — used across sections as the family's recurring "seal" motif */
+  .seal-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+  }
+  .seal-divider::before,
+  .seal-divider::after {
+    content: "";
+    height: 1px;
+    width: 2.75rem;
+    background: linear-gradient(to right, transparent, #CBA966, transparent);
+  }
+  .seal-diamond {
+    width: 7px;
+    height: 7px;
+    background: #CBA966;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  .frame-photo {
+    position: relative;
+  }
+  .frame-photo::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border: 1px solid #CBA966;
+    border-radius: 9999px;
+    opacity: 0.55;
+  }
+
+  .card-photo-wrap {
+    position: relative;
+  }
+  .card-photo-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    box-shadow: inset 0 0 0 1px rgba(203,169,102,0.35);
+  }
+
+  .member-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .member-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px -14px rgba(11,27,51,0.35);
+  }
+
+  .icon-btn {
+    transition: all 0.25s ease;
+  }
+  .icon-btn:hover {
+    background-color: #CBA966;
+    color: #0B1B33;
+    transform: translateY(-2px);
+  }
+
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0%;
+    height: 1px;
+    background: #CBA966;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  .fade-up {
+    animation: fadeUp 0.9s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+
+<body class="bg-cream text-navy-deep antialiased">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-navy/95 backdrop-blur-sm border-b border-gold-soft/20">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
+      <a href="#home" class="font-display text-cream tracking-[0.15em] text-sm md:text-base">
+        THE RUSTANDI <span class="text-gold-soft">FAMILY</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-8 font-body text-xs tracking-[0.2em] uppercase text-cream/80">
+        <a href="#about" class="nav-link hover:text-gold-bright">Tentang</a>
+        <a href="#members" class="nav-link hover:text-gold-bright">Keluarga</a>
+        <a href="#footer" class="nav-link hover:text-gold-bright">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="home" class="relative bg-navy pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <!-- ambient gold glow -->
+    <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[560px] h-[560px] rounded-full bg-gold-soft/10 blur-3xl"></div>
+
+    <div class="relative max-w-3xl mx-auto px-6 text-center fade-up">
+      <div class="frame-photo w-40 h-40 md:w-52 md:h-52 mx-auto mb-8">
+        <img src="FOTO KELUARGA.jpg" alt="Foto Keluarga Rustandi"
+             class="w-full h-full object-cover rounded-full ring-1 ring-cream/10 shadow-2xl">
+      </div>
+
+      <p class="font-body tracking-[0.35em] text-gold-soft text-[11px] md:text-xs uppercase mb-4">Est. in Warmth</p>
+
+      <h1 class="font-display text-cream text-3xl md:text-5xl font-semibold tracking-wide leading-tight">
+        THE RUSTANDI FAMILY
+      </h1>
+
+      <div class="seal-divider my-6">
+        <span class="seal-diamond"></span>
+      </div>
+
+      <p class="font-serifitalic italic text-cream/85 text-lg md:text-xl leading-relaxed px-2">
+        Ditenun oleh kehangatan, diikat oleh tawa, dan melangkah dengan tujuan.
+        The Rustandi Family adalah tempat di mana cerita terbaik kami selalu berawal dan bermuara.
+      </p>
+
+      <a href="#members"
+         class="inline-block mt-10 px-8 py-3 rounded-full bg-gold-soft text-navy-deep font-body text-xs tracking-[0.25em] uppercase font-medium hover:bg-gold-bright transition-colors">
+        Lihat Anggota Keluarga
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== TENTANG KAMI ===================== -->
+  <section id="about" class="bg-cream py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <p class="font-body tracking-[0.35em] text-gold-soft text-[11px] uppercase mb-3">Tentang Kami</p>
+      <h2 class="font-display text-2xl md:text-4xl text-navy-deep font-semibold mb-6">Rumah Bagi Setiap Cerita</h2>
+      <div class="seal-divider mb-8">
+        <span class="seal-diamond"></span>
+      </div>
+      <p class="font-body text-navy-ink/80 leading-relaxed text-base md:text-lg">
+        Kami adalah Keluarga Rustandi — sebuah rumah kecil yang dibangun dari kepercayaan, doa, dan kebersamaan
+        yang dijaga dari generasi ke generasi. Di antara kesibukan dan langkah masing-masing, kami selalu kembali
+        pada satu hal yang sama: rasa saling memiliki. Halaman ini kami hadirkan sebagai satu pintu sederhana,
+        agar siapa pun yang ingin menyapa dapat menjangkau kami dengan mudah dan hangat.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== GRID ANGGOTA KELUARGA ===================== -->
+  <section id="members" class="bg-navy py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="font-body tracking-[0.35em] text-gold-soft text-[11px] uppercase mb-3">Keluarga</p>
+        <h2 class="font-display text-2xl md:text-4xl text-cream font-semibold">Tujuh Nama, Satu Rumah</h2>
+        <div class="seal-divider mt-6">
+          <span class="seal-diamond"></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Aba -->
+        <div class="member-card bg-navy-ink border border-gold-soft/20 rounded-2xl p-7 flex flex-col items-center text-center">
+          <div class="card-photo-wrap w-28 h-28 rounded-full mb-5">
+            <img src="FOTO ABA.jpg" alt="Aba - Dede Rustandi" class="w-full h-full object-cover rounded-full">
+          </div>
+          <p class="font-body tracking-[0.25em] text-gold-soft text-[10px] uppercase mb-1">Aba</p>
+          <h3 class="font-display text-cream text-lg font-medium mb-4">DEDE RUSTANDI</h3>
+          <div class="flex items-center gap-3">
+            <a href="https://wa.me/6289683026204" target="_blank" rel="noopener" aria-label="WhatsApp Aba"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="mailto:roestandiedede83@gmail.com" aria-label="Email Aba"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://www.tiktok.com/@drust_andy" target="_blank" rel="noopener" aria-label="TikTok Aba"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/drust_andy" target="_blank" rel="noopener" aria-label="Instagram Aba"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ummi -->
+        <div class="member-card bg-navy-ink border border-gold-soft/20 rounded-2xl p-7 flex flex-col items-center text-center">
+          <div class="card-photo-wrap w-28 h-28 rounded-full mb-5">
+            <img src="FOTO UMMI.jpg" alt="Ummi - Erma Wahyuni" class="w-full h-full object-cover rounded-full">
+          </div>
+          <p class="font-body tracking-[0.25em] text-gold-soft text-[10px] uppercase mb-1">Ummi</p>
+          <h3 class="font-display text-cream text-lg font-medium mb-4">ERMA WAHYUNI</h3>
+          <div class="flex items-center gap-3">
+            <a href="https://wa.me/62895344092860" target="_blank" rel="noopener" aria-label="WhatsApp Ummi"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="mailto:ermawahyuni88@gmail.com" aria-label="Email Ummi"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://www.tiktok.com/@ermawahyuni2206" target="_blank" rel="noopener" aria-label="TikTok Ummi"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/ermawahyuni4" target="_blank" rel="noopener" aria-label="Instagram Ummi"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kakang -->
+        <div class="member-card bg-navy-ink border border-gold-soft/20 rounded-2xl p-7 flex flex-col items-center text-center">
+          <div class="card-photo-wrap w-28 h-28 rounded-full mb-5">
+            <img src="FOTO KAKANG.jpg" alt="Kakang - Muhammad Izzatullah Husayni" class="w-full h-full object-cover rounded-full">
+          </div>
+          <p class="font-body tracking-[0.25em] text-gold-soft text-[10px] uppercase mb-1">Kakang</p>
+          <h3 class="font-display text-cream text-lg font-medium mb-4">MUHAMMAD IZZATULLAH HUSAYNI</h3>
+          <div class="flex items-center gap-3">
+            <a href="https://wa.me/6285603767420" target="_blank" rel="noopener" aria-label="WhatsApp Kakang"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="mailto:kakangizza@gmail.com" aria-label="Email Kakang"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://www.tiktok.com/@yourfriendzaaa" target="_blank" rel="noopener" aria-label="TikTok Kakang"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/izzaizza122444" target="_blank" rel="noopener" aria-label="Instagram Kakang"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Teteh (Aliyya) -->
+        <div class="member-card bg-navy-ink border border-gold-soft/20 rounded-2xl p-7 flex flex-col items-center text-center">
+          <div class="card-photo-wrap w-28 h-28 rounded-full mb-5">
+            <img src="FOTO ALIYYA.jpg" alt="Teteh - Aliyya Zakiah Haura Insiyah" class="w-full h-full object-cover rounded-full">
+          </div>
+          <p class="font-body tracking-[0.25em] text-gold-soft text-[10px] uppercase mb-1">Teteh</p>
+          <h3 class="font-display text-cream text-lg font-medium mb-4">ALIYYA ZAKIAH HAURA INSIYAH</h3>
+          <div class="flex items-center gap-3">
+            <a href="https://wa.me/6289530103340" target="_blank" rel="noopener" aria-label="WhatsApp Teteh"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="mailto:zakiahhaura39@gmail.com" aria-label="Email Teteh"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://www.tiktok.com/@liyaaaa937" target="_blank" rel="noopener" aria-label="TikTok Teteh"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/aliyaaaa_1245" target="_blank" rel="noopener" aria-label="Instagram Teteh"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ibey (tanpa Instagram) -->
+        <div class="member-card bg-navy-ink border border-gold-soft/20 rounded-2xl p-7 flex flex-col items-center text-center">
+          <div class="card-photo-wrap w-28 h-28 rounded-full mb-5">
+            <img src="FOTO IBEY.jpg" alt="Ibey - Muhammad Husein Fadhlullah" class="w-full h-full object-cover rounded-full">
+          </div>
+          <p class="font-body tracking-[0.25em] text-gold-soft text-[10px] uppercase mb-1">Ibey</p>
+          <h3 class="font-display text-cream text-lg font-medium mb-4">MUHAMMAD HUSEIN FADHLULLAH</h3>
+          <div class="flex items-center gap-3">
+            <a href="https://wa.me/6288214937425" target="_blank" rel="noopener" aria-label="WhatsApp Ibey"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="mailto:ibeyibey133@gmail.com" aria-label="Email Ibey"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://www.tiktok.com/@husein_321" target="_blank" rel="noopener" aria-label="TikTok Ibey"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <!-- Instagram tidak ada, tombol disembunyikan -->
+          </div>
+        </div>
+
+        <!-- Rakana (hanya Email) -->
+        <div class="member-card bg-navy-ink border border-gold-soft/20 rounded-2xl p-7 flex flex-col items-center text-center">
+          <div class="card-photo-wrap w-28 h-28 rounded-full mb-5">
+            <img src="FOTO RAKANA.jpg" alt="Rakana - Hana Rakana Zainab" class="w-full h-full object-cover rounded-full">
+          </div>
+          <p class="font-body tracking-[0.25em] text-gold-soft text-[10px] uppercase mb-1">Rakana</p>
+          <h3 class="font-display text-cream text-lg font-medium mb-4">HANA RAKANA ZAINAB</h3>
+          <div class="flex items-center gap-3">
+            <!-- WhatsApp, TikTok, Instagram tidak ada, tombol disembunyikan -->
+            <a href="mailto:twinshop688@gmail.com" aria-label="Email Rakana"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Raina (hanya Email) -->
+        <div class="member-card bg-navy-ink border border-gold-soft/20 rounded-2xl p-7 flex flex-col items-center text-center sm:col-start-1 lg:col-start-2">
+          <div class="card-photo-wrap w-28 h-28 rounded-full mb-5">
+            <img src="FOTO RAINA.jpg" alt="Raina - Hani Raina Zainab" class="w-full h-full object-cover rounded-full">
+          </div>
+          <p class="font-body tracking-[0.25em] text-gold-soft text-[10px] uppercase mb-1">Raina</p>
+          <h3 class="font-display text-cream text-lg font-medium mb-4">HANI RAINA ZAINAB</h3>
+          <div class="flex items-center gap-3">
+            <!-- WhatsApp, TikTok, Instagram tidak ada, tombol disembunyikan -->
+            <a href="mailto:twinshop688@gmail.com" aria-label="Email Raina"
+               class="icon-btn w-9 h-9 rounded-full bg-cream/10 text-cream flex items-center justify-center">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="footer" class="bg-navy-deep border-t border-gold-soft/15 py-10">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <div class="seal-divider mb-5">
+        <span class="seal-diamond"></span>
+      </div>
+      <p class="font-display text-cream/90 tracking-[0.1em] text-sm mb-1">THE RUSTANDI FAMILY</p>
+      <p class="font-body text-cream/50 text-xs tracking-wide">
+        Dibuat oleh Muhammad Izzatullah Husayni (Kakang)
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
